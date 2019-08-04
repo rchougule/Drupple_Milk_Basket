@@ -1,0 +1,663 @@
+<html>
+    <head>
+        <title>
+            Area Insights
+        </title>
+    </head>
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link href="css/materialize.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mate_icon.css" >
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    
+    <body>
+        <div id="loaderDiv">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+                
+                    <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+                
+                    <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+                
+                    <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    
+    <div id="modal1" class="modal bottom-sheet" style="max-height:none !important;">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s6 offset-s3 center">
+                    <h4>Login</h4>
+                </div>
+
+                <div class="col s1 offset-s2">
+                    <b class="modal-close"> <i class="material-icons prefix">close</i></b>
+                </div>
+                <div class="col s12">
+                    <hr>
+                </div>
+                <div class="input-field col s10 offset-s1">
+                        <i class="material-icons prefix iconColor" >email</i>
+                        <input id="inputEmailLogin" type="email" class="validate"  >
+                        <label for="inputEmailLogin">Email</label>
+                </div>
+
+                <div class="input-field col s10 offset-s1">
+                    <i class="material-icons prefix iconColor">remove_red_eye</i>
+                    <input id="inputPasswordLogin" type="password" class="validate">
+                    <label for="inputPasswordLogin">Password </label>
+                </div>
+
+                <div class="col s10 offset-s1 center">
+                    <a class="waves-effect waves-light  btn mainButtonCss buttonColor" onclick="doLogin()"><i class="material-icons left hyphen">blur_circular</i>Login</a>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainFrame">
+        <div id="area-page">
+            <div id="first-dashboard-header">
+                <div class="dashboard-headline">
+                    My HickyBoard
+                </div>
+                <div class="profile-box">
+                    <img src="img/topLocation.png" style="height:30px;margin-right:15px;">
+                    <span class="city-name">Pune</span>
+                </div>
+            </div>
+            <div id="second-dashboard-header">
+                <div id="category-box">
+                    <div class="single-category active">Warehoust</div>
+                    <div class="single-category inactive">Products</div>
+                    <div class="single-category inactive">Routes</div>
+                    <div class="single-category inactive">User Specific</div>                
+                </div>
+            </div>
+            <div id="third-dashboard-half-rounded-header"></div>
+            <div id="dashboard-content-box" class="row">
+                <div class="col s12">
+                    <br>
+                </div>
+                <div class="common-card col s12">
+                    <div class="row" style="margin-bottom:0px;">
+                        <div class="image-card col s4">
+                            <img src="img/user.png" height="40px">
+                            <div class="insight-container">
+                                <span class="insgiht-headline">Number of Customers</span> <br>
+                                <span class="insgiht-value" id="city-customer-result">500</span>
+                            </div>
+                        </div>
+                        <div class="image-card col s4">
+                                <img src="img/cost.png" height="40px">
+                                <div class="insight-container">
+                                    <span class="insgiht-headline">Average Order/ Day</span> <br>
+                                    <span class="insgiht-value" id="city-average-order-result">500</span>
+                                </div>
+                        </div>
+                        <div class="image-card col s4">
+                            <img src="img/order.png" height="40px">
+                            <div class="insight-container">
+                                <span class="insgiht-headline" >Average Cost/ Day</span> <br>
+                                <span class="insgiht-value" id="city-average-value-result">500</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <br>
+                </div>
+                <div class="special-card col s4">
+                    <div class="special-card-location-box">
+                        <img src="img/warehouse.png" width="40px">
+                        <div class="insight-container">
+                            <span class="insgiht-headline">Number of Warehouses</span> <br>
+                            <div class="insgiht-value">
+                                <img src="img/location.png" width="20px"> 
+                                <span style="font-size:0.9rem;" id="city-lat-long-warehouse-result"> 75.67, 78.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="special-card-insight-data" style="font-size:3rem;" id="city-warehouse-result">
+                        1
+                    </div>
+                </div>
+                <div class="col s8">
+                    <div class="row simple-plain-text">
+                        <div>
+                            <span class="big-number" style="font-size:1.5rem;font-family: robotoBold;" id="city-mean-order-cost-result">89 </span>
+                            <span class="supporting-text" > is the Average amounts user spends/day.</span>
+                        </div>
+                        <div></div>
+                        <div >
+                            <span class="big-number" style="font-size:1.5rem;font-family: robotoBold;" id="city-max-distance-result">23.56</span>
+                            <span class="supporting-text" >is the Maximum Distance a truck travel to deliever product.</span>
+                        </div>
+                    </div>
+                </div>
+            <div class="col s12"><br></div>
+                <div class="col s5 graph-card" style="margin-left:2px;">
+                    <div class="row">
+                        <div class="col s4">
+                            <span style="font-family:robotoRegular;font-size:1.6rem;position:relative;top:20px;">Average Weekly Sales</span>
+                        </div>
+                        <div class="col s8" style="padding-left:0px;padding-right:0px;">
+                            <div id="spider-dashboard-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s1"></div>
+                <div class="col s5 graph-card">
+                    <div class="row">
+                        <div class="col s12">
+                            <div id="graph-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dashboard-predictive-box" class="row">
+                    <div class="col s12">
+                            <br>
+                        </div>
+                        <div class="common-card col s12">
+                            <div class="row" style="margin-bottom:0px;">
+                                <div class="image-card col s4">
+                                    <img src="img/user.png" height="40px">
+                                    <div class="insight-container">
+                                        <span class="insgiht-headline">Number of Customers</span> <br>
+                                        <span class="insgiht-value" id="city-customer-predictive-result" >500</span>
+                                    </div>
+                                </div>
+                                <div class="image-card col s4">
+                                        <img src="img/cost.png" height="40px">
+                                        <div class="insight-container">
+                                            <span class="insgiht-headline">Average Order/ Day</span> <br>
+                                            <span class="insgiht-value" id="city-average-order-predictive-result">500</span>
+                                        </div>
+                                </div>
+                                <div class="image-card col s4">
+                                    <img src="img/order.png" height="40px">
+                                    <div class="insight-container">
+                                        <span class="insgiht-headline">Average Cost/ Day</span> <br>
+                                        <span class="insgiht-value" id="city-average-value-predictive-result">500</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <br>
+                        </div>
+                        <div class="special-card col s4">
+                            <div class="special-card-location-box">
+                                <img src="img/sale.png" width="40px">
+                                <div class="insight-container">
+                                    <span class="insgiht-headline">Predicted sales for Date</span> <br>
+                                    <div class="insgiht-value">
+                                        <img src="img/timer.png" width="20px"> 
+                                        <span style="font-size:0.9rem;" > 1st Aug 2019</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="special-card-insight-data" style="font-size:1.2rem;font-weight: 600;" id="city-next-date-predictive-result">
+                                1
+                            </div>
+                        </div>
+                        <div class="col s8">
+
+                                <div class="row simple-plain-text">
+                                        <div >
+                                            <span class="big-number" style="font-size:1.5rem;font-family: robotoBold;" id="city-max-distance-predicted-result">23.56</span>
+                                            <span class="supporting-text" >is the Maximum Distance a truck travel to deliever product.</span>
+                                        </div>
+                                    </div>
+                
+                        </div>
+                        <div class="col s12"><br></div>
+                        <div class="col s12">
+                            <div id="mapid" style="height:350px;width:100%;"></div>
+                        </div>
+            </div>
+
+
+            <div id="right-dashboard-box">
+                    <div id="right-small-dashboard-box">
+                        <div class="choose-current-anlysis row">
+                            <div class="col s12"><br><br></div>
+                            <div class="col s12">
+                                Choose type of Analysis
+                            </div>
+                            <div class="col s12">
+                                <p>
+                                    <label>
+                                        <input name="group1" type="radio" id="radio-descriptive" checked  onclick="changeData('descriptive')"/>
+                                        <span>Descriptive Analysis</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input name="group1" type="radio" id="radio-predictive" onclick="changeData('predictive')"/>
+                                        <span>Predictive Analysis</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="choose-area row">
+                                <div class="col s12"><br><br></div>
+                                <div class="col s12">
+                                    Choose Area to Explore More
+                                </div>
+                                <div class="col s12">
+                                    <div class="input-field col s12" style="width:60%;">
+                                        <select id="area-selection-box">
+                                            <option value="" disabled selected>Select City</option>
+                                            <option value="1">0</option>
+                                            <option value="2">1</option>
+                                            <option value="3">2</option>
+                                            <option value="1">3</option>
+                                            <option value="2">4</option>
+                                            <option value="3">5</option>
+                                            <option value="1">6</option>
+                                            <option value="2">7</option>
+                                            <option value="3">8</option>
+                                            <option value="1">9</option>
+                                            <option value="2">10</option>
+                                            <option value="3">11</option>
+                                            <option value="1">12</option>
+                                            <option value="2">13</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="left-dashboard-box"></div>
+    
+        </div>
+    </div>
+    </div>
+    </body>
+
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+
+    <script>
+        function createSpiderWebChart(inputData){
+            Highcharts.chart('spider-dashboard-chart', {
+                chart: {
+                    polar: true,
+                    type: 'line'
+                },
+                title:{
+                    text:''
+                    },
+                exporting: { enabled: false },
+                pane: {
+                    size: '80%'
+                },
+
+                xAxis: {
+                    categories: ['Week 1','Week 2','Week 3','Week 4','Week 5'],
+                    tickmarkPlacement: 'on',
+                    lineWidth: 0
+                },
+
+                yAxis: {
+                    gridLineInterpolation: 'polygon',
+                    lineWidth: 0,
+                    min: 0
+                },
+
+                tooltip: {
+                    shared: true,
+                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+                },
+
+                legend: {
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                series: [{
+                        showInLegend:false,
+                    name: "Week of Month Sale (₹) : ",
+                    data: inputData,
+                    pointPlacement: 'on'
+                }],
+                credits: {
+                enabled: false
+            },
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 200
+                        },
+                        chartOptions: {
+                            legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            },
+                            pane: {
+                                size: '70%'
+                            }
+                        }
+                    }]
+                }
+
+            });
+        }
+
+        createBarGraph();
+
+        function createBarGraph(inputData){
+            Highcharts.chart('graph-chart', {
+                chart: {
+                    type: 'column'
+                },
+                title:{
+                    text:''
+                },
+                credits: {
+                enabled: false
+            },
+                exporting: { enabled: false },
+                xAxis: {
+                    categories: [
+                        'Sun',
+                        'Mon',
+                        'Tue',
+                        'Wed',
+                        'Thr',
+                        'Fri',
+                        'Sat'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Day of week Graph (₹)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Amount (₹) ',
+                    data: inputData
+
+                }]
+            });
+        }
+
+        function changeData(currentClickedText){
+            if(currentClickedText=='descriptive'){
+                $("#dashboard-content-box").css('display','block');
+                $("#dashboard-predictive-box").css('display','none');
+            }else{
+                $("#dashboard-content-box").css('display','none');
+                $("#dashboard-predictive-box").css('display','block');
+            }
+        }
+        
+        function callMap(inputData){
+            var map = L.map('mapid').setView([-41.3058, 174.82082], 8); 
+
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic3dhc3Rpa3Nocml2YXN0YXZhIiwiYSI6ImNqeXZ4ZDE4czBncmczZ21pbzAwNDlqbXEifQ.AqXm-1qaXZQ4qXfGh4e1Ow', {
+                maxZoom: 38,
+                id: 'mapbox.streets',
+                accessToken: 'pk.eyJ1Ijoic3dhc3Rpa3Nocml2YXN0YXZhIiwiYSI6ImNqeXZ4ZDE4czBncmczZ21pbzAwNDlqbXEifQ.AqXm-1qaXZQ4qXfGh4e1Ow'
+            }).addTo(map);
+            
+            plotOnMap(inputData,map);
+        }
+
+
+        // index.js 
+
+        $(document).ready(function(){
+        //   $('.sidenav').sidenav();
+        //   $('ul.tabs').tabs();
+        //   $('.tooltipped').tooltip();
+        //   $('.fixed-action-btn').floatingActionButton();
+        //   $('.modal').modal();
+        //   $('.tap-target').tapTarget();
+          $('select').formSelect();
+
+        // $(".button-collapse").sideNav();
+        // $('.tooltipped').tooltip({delay: 50});
+        // window.dispatchEvent(new Event('resize'));
+        // $('ul.tabs').tabs();
+        })
+
+        const serverURL = 'http://10.105.17.32:3003/';
+
+        var captionInterval;
+
+        window.onload = function(){
+
+        }
+
+        function showLoader(){
+            $("#loaderDiv").css('display','block');
+        }
+
+        function hideLoader(){
+            $("#loaderDiv").css('display','none');
+        }
+
+        function ajaxCallFunction(method, requestPath, headers, data, successAction, errorAction){
+        
+            showLoader();
+            
+            if(typeof(data) == 'object'){
+            data = JSON.stringify(data);
+            }
+        
+            const url = serverURL + requestPath;
+        
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                url,
+                method,
+                headers,
+                data
+            }
+        
+            $.ajax(settings).done(function (response) {
+                hideLoader();
+                if(response){
+                    successAction(response);
+                }else{
+                    errorAction();
+                }
+            }).fail(function(err){
+                hideLoader();
+                const { responseJSON={} } = err;
+                const { error:errorMessage='Request Sending Failed'} = responseJSON;
+                errorAction(errorMessage);
+            });
+        }
+
+        function inputCitySubmit(){
+            $('#landing-page').css('display','none');
+            $('#dashboard').css('display','block');
+            dsahboardAPiCityData();
+        }
+
+        function dsahboardAPiCityData(){
+        
+            const errorFunction = (error)=>{
+                console.log('Error occured',error);
+            }
+
+            const succesFunction = (response)=>{
+                console.log('City Data Fetched Succesfully');
+                console.log(response);
+
+                const { statusCode,message='',data={} } = response;
+                if(statusCode == 200){
+                    M.toast({html: message});
+
+                    const { descriptive, predictive }= data;
+                    
+                    // start filling the data
+                    $("#city-customer-result")[0].innerHTML = descriptive.noOfUsers.toFixed(2);
+                    $("#city-average-order-result")[0].innerHTML = descriptive.avgOrdersPerDay.toFixed(2);
+                    $("#city-average-value-result")[0].innerHTML =descriptive.avgValuePerDay.toFixed(2);
+
+                    $("#city-mean-order-cost-result")[0].innerHTML = '₹ '+descriptive.meanOrderCost.toFixed(2);
+                    $("#city-warehouse-result")[0].innerHTML =descriptive.noOfWarehouses.toFixed(2);
+                    $("#city-max-distance-result")[0].innerHTML =descriptive.maxDistanceFromWarehouse.toFixed(2) + ' Km ';
+
+                    $("#city-lat-long-warehouse-result")[0].innerHTML =descriptive.warehouseLocation.lat.toFixed(4)+", "+descriptive.warehouseLocation.long.toFixed(4);
+
+                    // bar  graph value
+
+                    const barGraphArray = Object.keys(descriptive.dayOfWeekGraph).map((value)=> descriptive.dayOfWeekGraph[value]);
+                    createBarGraph(barGraphArray);
+
+                    // spider  graph value
+                    const spiderGraphArray = Object.keys(descriptive.weekOfMonthGraph).map((value)=> descriptive.weekOfMonthGraph[value]);
+                    createSpiderWebChart(spiderGraphArray);
+
+
+                    // predictive anaylysis 
+
+                    $("#city-customer-predictive-result")[0].innerHTML = descriptive.noOfUsers.toFixed(2);
+                    $("#city-average-order-predictive-result")[0].innerHTML = descriptive.avgOrdersPerDay.toFixed(2);
+                    $("#city-average-value-predictive-result")[0].innerHTML =descriptive.avgValuePerDay.toFixed(2);
+                    $("#city-next-date-predictive-result")[0].innerHTML = '₹ ' + predictive.valueTomorrow.toFixed(2);
+                    $("#city-max-distance-predicted-result")[0].innerHTML = predictive.newMaxDistanceFromWarehouse.toFixed(2) + ' Km.';
+                    
+                    // plotting map 
+
+                    callMap(response.data);
+                }
+
+            }
+
+            const headers = {
+                "Accept": "*/*",
+                "Cache-Control": "no-cache",
+                "cache-control": "no-cache"
+            };
+
+            ajaxCallFunction('GET','city-insights',headers,{},succesFunction,errorFunction);
+        }
+
+        function plotOnMap (data, map) {
+        // plot societies
+            
+            var { descriptive } = data
+            var { societiesLatLong } = descriptive;
+            for (var i = 0; i < societiesLatLong.length; i++) {
+            marker = new L.marker([societiesLatLong[i][1],societiesLatLong[i][2]])
+            .bindPopup(societiesLatLong[i][0])
+            .addTo(map);
+            }
+
+            // plot area circles
+            var { areaCenters } = descriptive;
+            for (var i = 0; i < areaCenters.length; i++) {
+            var circle = L.circle([areaCenters[i][0], areaCenters[i][1]], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 50
+            }).addTo(map);
+            }
+
+            // plot main warehouse
+            var greenIcon = L.icon({
+            iconUrl: 'img/stock.png',
+            iconSize:     [38, 38], // size of the icon
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+            var { descriptive } = data
+            var { warehouseLocation } = descriptive
+            var warehouseMarker = L.marker([warehouseLocation.lat, warehouseLocation.long], {icon: greenIcon}).addTo(map);
+            warehouseMarker.bindPopup("<b>Central Warehouse</b>").openPopup();
+
+            // plot predicted pods
+            var redIcon = L.icon({
+            iconUrl: 'img/pod.png',
+            iconSize:     [20, 20], // size of the icon
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+            var { predictive } = data
+            var { pods } = predictive
+
+            for (let pod of pods) {
+            var podMarker = L.marker([pod.lat, pod.long], {icon: redIcon}).addTo(map);
+            }
+        }
+
+
+        // index.js
+    </script>
+</html>
