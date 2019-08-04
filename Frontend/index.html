@@ -109,7 +109,7 @@
                     <img src="img/crop-logo.png" height="60px" style="position:relative;left: -20px;">
                 </div>
                 <div id="headline">
-                    Input city to Explore Hicky
+                    Input city to Explore MaterIn
                 </div>
                 <div>
                     <br>
@@ -129,7 +129,7 @@
         <div id="dashboard">
             <div id="first-dashboard-header">
                 <div class="dashboard-headline">
-                    My HickyBoard
+                    MaterIn
                 </div>
                 <div class="profile-box">
                     <img src="img/topLocation.png" style="height:30px;margin-right:15px;">
@@ -320,7 +320,7 @@
                                 <div class="col s12">
                                     <div class="input-field col s12" style="width:60%;">
                                         <select id="area-selection-box">
-                                            <option value="" disabled selected>Select City</option>
+                                            <option value="" disabled selected>Select Area</option>
                                             <option value="1">0</option>
                                             <option value="2">1</option>
                                             <option value="3">2</option>
@@ -363,13 +363,15 @@
                         </div>
                     </div>
                 </div>
-                <div id="left-dashboard-box"></div>
+                <div id="left-dashboard-box">
+                    <img src="img/ourLogo1.png" height="40px" style="top: 9px; left: 8px; position: relative;">
+                </div>
     
         </div>
         <div id="area-page">
             <div id="area-first-dashboard-header">
                 <div class="area-dashboard-headline">
-                    My HickyBoard
+                    MaterIn
                 </div>
                 <div class="profile-box">
                     <img src="img/topLocation.png" style="height:30px;margin-right:15px;">
@@ -438,7 +440,7 @@
                         </div>
                         <div class="col s6">
                             <span class="big-number" style="font-size:1.5rem;font-family: robotoBold;" id="area-mean-order-cost-result">89 </span>
-                            <span class="supporting-text" > is the Average amounts user spends/day.</span>
+                            <span class="supporting-text" > is the Average amount user spends per/order.</span>
                         </div>
                     </div>
                 </div>
@@ -592,7 +594,7 @@
                                         <thead>
                                           <tr>
                                             <th>Product</th>
-                                            <th>Estimated Price next Week</th>
+                                            <th>Estimated Quantity Next Week</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -654,7 +656,7 @@
                                 <div class="col s12">
                                     <div class="input-field col s12" style="width:60%;">
                                         <select id="area-selection-box">
-                                            <option value="" disabled selected>Select City</option>
+                                            <option value="" disabled selected>Select Area</option>
                                             <option value="1">0</option>
                                             <option value="2">1</option>
                                             <option value="3">2</option>
@@ -698,13 +700,15 @@
                         </div>
                     </div>
                 </div>
-            <div id="area-left-dashboard-box"></div>
+            <div id="area-left-dashboard-box">
+                <img src="img/ourLogo1.png" height="40px" style="top: 9px; left: 8px; position: relative;">
+            </div>
         </div>
 
         <div id="user-page">
                 <div id="user-first-dashboard-header">
                     <div class="area-dashboard-headline">
-                        My HickyBoard
+                        MaterIn
                     </div>
                     <div class="profile-box">
                         <img src="img/topLocation.png" style="height:30px;margin-right:15px;">
@@ -766,41 +770,27 @@
                             1
                         </div>
                     </div>
-                    <div class="col s4">
+                    <div class="col s3 offset-s1 graph-card" style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <span>Ever tried Subscription</span>
-                        <span><hr></span>
-                        <img src=""
+                        <span style="width: 80%;"><hr></span>
+                        <img id="image-type">
                     </div>
                     <div class="col s4 ">
                         <div class="row">
-                            <div class="col s6">
-                                <span class="big-number" style="font-size:1.5rem;font-family: robotoBold;" id="area-mean-order-cost-result">89 </span>
-                                <span class="supporting-text" > is the Average amounts user spends/day.</span>
+                            <div class="col s8 offset-s2">
+                                <span class="big-number" style="font-size:1.5rem;font-family: robotoBold;" id="user-different-result">89 </span>
+                                <span class="supporting-text" > different products he bought.</span>
+                            </div>
+
+                            <div class="col s8 offset-s2">
+                                <span class="big-number" style="font-size:1.5rem;font-family: robotoBold;" id="user-fav--prod-categ-result">89 </span>
+                                <span class="supporting-text" > is his favourite Category.</span>
                             </div>
                         </div>
                     </div>
-                <div class="col s12"><br></div>
-                    <div class="col s5 graph-card" style="margin-left:2px;">
-                        <div class="row">
-                            <div class="col s4">
-                                <span style="font-family:robotoRegular;font-size:1.6rem;position:relative;top:20px;">Average Weekly Sales</span>
-                            </div>
-                            <div class="col s8" style="padding-left:0px;padding-right:0px;">
-                                <div id="user-spider-dashboard-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s1"></div>
-                    <div class="col s5 graph-card">
-                        <div class="row">
-                            <div class="col s12">
-                                <div id="user-graph-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-    
+
                     <div class="col s12"><br> <br></div>
-    
+
                     <div class="col s5 graph-card">
                         <table class="striped centered">
                             <thead>
@@ -811,19 +801,19 @@
                     
                             <tbody>
                             <tr>
-                                    <td id="1_products">Alvin</td>
+                                <td id="1_user_products">-</td>
                                 </tr>
                                 <tr>
-                                    <td id="2_products">Alan</td>
+                                    <td id="2_user_products">-</td>
                                 </tr>
                                 <tr>
-                                    <td id="3_products">Jonathan</td>
+                                    <td id="3_user_products">-</td>
                                 </tr>
                                 <tr>
-                                    <td id="4_products">Jonathan</td>
+                                    <td id="4_user_products">-</td>
                                 </tr>
                                 <tr>
-                                    <td id="5_products">Jonathan</td>
+                                    <td id="5_user_products">-</td>
                                 </tr>
         
                                 
@@ -835,25 +825,27 @@
                             <table class="striped centered">
                                     <thead>
                                     <tr>
-                                        <th>Top 5 Brands</th>
+                                        <th>User Insights</th>
+                                        <th>Value</th>
                                    </tr>
                                 </thead>
                         
                                 <tbody>
                                     <tr>
-                                        <td id="1_brand">Alvin</td>
+                                        <td id="1_fav_name">Favourite brand</td>
+                                        <td id="1_fav-brand-value">-</td>
                                     </tr>
                                     <tr>
-                                        <td id="2_brand">Alan</td>
+                                        <td id="2_frequent-hour_slot">Frequent Hour Slot</td>
+                                        <td id="2_frequent-hour_slot_value">-</td>
                                     </tr>
                                     <tr>
-                                        <td id="3_brand">Jonathan</td>
+                                        <td id="3_mean_oder_cost">Mean Order Cost</td>
+                                        <td id="3_mean_oder_cost_value">-</td>
                                     </tr>
                                     <tr>
-                                        <td id="4_brand">Jonathan</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="5_brand">Jonathan</td>
+                                        <td id="4_fav_cate">Favourite Product Category</td>
+                                        <td id="4_fav_cate_value">-</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -959,7 +951,7 @@
                                     <div class="col s12">
                                         <div class="input-field col s12" style="width:60%;">
                                             <select id="area-selection-box">
-                                                <option value="" disabled selected>Select City</option>
+                                                <option value="" disabled selected>Select Area</option>
                                                 <option value="1">0</option>
                                                 <option value="2">1</option>
                                                 <option value="3">2</option>
@@ -1002,7 +994,9 @@
                             </div>
                         </div>
                     </div>
-                <div id="user-left-dashboard-box"></div>
+                <div id="user-left-dashboard-box" >
+                    <img src="img/ourLogo1.png" height="40px" style="top: 9px; left: 8px; position: relative;">
+                </div>
             </div>
     
 
@@ -1050,7 +1044,7 @@
 
                     $("#user-customer-result")[0].innerHTML = customer_id;
                     $("#user-average-order-result")[0].innerHTML = Math.ceil(descriptive.avgOrdersPerDay);
-                    $("#user-average-value-result")[0].innerHTML = descriptive.avgSpendPerDay.toFixed(2);
+                    $("#user-average-value-result")[0].innerHTML = '₹ '+descriptive.avgSpendPerDay.toFixed(2);
 
                     var sampleTextArray = [];
                     for(var i=0;i<descriptive.quintile;i++)
@@ -1059,6 +1053,27 @@
                     $("#user-star-rank-result")[0].innerHTML = sampleTextArray.join(" ");
                     $("#user-qunantile-number-result")[0].innerHTML = descriptive.quintile;
 
+                    //subscription                  
+                    if(descriptive.subscription)
+                        $("#image-type")[0].src = 'img/right.png';
+                    else  
+                        $("#image-type")[0].src = 'img/close.png';
+                    
+                        $("#user-different-result")[0].innerHTML = descriptive.totalUniqueProducts;
+
+                        $("#user-fav--prod-categ-result")[0].innerHTML = descriptive.productCategory;
+
+                        $("#1_user_products")[0].innerHTML = descriptive.topProducts[0];
+                        $("#2_user_products")[0].innerHTML = descriptive.topProducts[1];
+                        $("#3_user_products")[0].innerHTML = descriptive.topProducts[2];
+                        $("#4_user_products")[0].innerHTML = descriptive.topProducts[3];
+                        $("#5_user_products")[0].innerHTML = descriptive.topProducts[4];
+
+                        $("#1_fav-brand-value")[0].innerHTML = descriptive.favouriteBrand;
+                        $("#2_frequent-hour_slot_value")[0].innerHTML = descriptive.frequentHourSlot;
+                        $("#3_mean_oder_cost_value")[0].innerHTML = descriptive.meanOrderCost.toFixed(2);
+                        $("#4_fav_cate_value")[0].innerHTML = descriptive.productCategory;
+                        
                 }
 
             }
@@ -1430,8 +1445,8 @@
                     
                     // start filling the data
                     $("#city-customer-result")[0].innerHTML = descriptive.noOfUsers.toFixed(2);
-                    $("#city-average-order-result")[0].innerHTML = descriptive.avgOrdersPerDay.toFixed(2);
-                    $("#city-average-value-result")[0].innerHTML =descriptive.avgValuePerDay.toFixed(2);
+                    $("#city-average-order-result")[0].innerHTML = Math.ceil(descriptive.avgOrdersPerDay);
+                    $("#city-average-value-result")[0].innerHTML = '₹ '+descriptive.avgValuePerDay.toFixed(2);
 
                     $("#city-mean-order-cost-result")[0].innerHTML = '₹ '+descriptive.meanOrderCost.toFixed(2);
                     $("#city-warehouse-result")[0].innerHTML =descriptive.noOfWarehouses.toFixed(2);
@@ -1452,8 +1467,8 @@
                     // predictive anaylysis 
 
                     $("#city-customer-predictive-result")[0].innerHTML = descriptive.noOfUsers.toFixed(2);
-                    $("#city-average-order-predictive-result")[0].innerHTML = descriptive.avgOrdersPerDay.toFixed(2);
-                    $("#city-average-value-predictive-result")[0].innerHTML =descriptive.avgValuePerDay.toFixed(2);
+                    $("#city-average-order-predictive-result")[0].innerHTML = Math.ceil(descriptive.avgOrdersPerDay);
+                    $("#city-average-value-predictive-result")[0].innerHTML = '₹ ' +descriptive.avgValuePerDay.toFixed(2);
                     $("#city-next-date-predictive-result")[0].innerHTML = '₹ ' + predictive.valueTomorrow.toFixed(2);
                     $("#city-max-distance-predicted-result")[0].innerHTML = predictive.newMaxDistanceFromWarehouse.toFixed(2) + ' Km.';
                     
@@ -1549,8 +1564,8 @@
 
                     // top header 
                     $("#area-customer-result")[0].innerHTML = descriptive.noOfUsers
-                    $("#area-average-order-result")[0].innerHTML = descriptive.avgOrdersPerDay.toFixed(2);
-                    $("#area-average-value-result")[0].innerHTML = descriptive.avgValuePerDay.toFixed(2);
+                    $("#area-average-order-result")[0].innerHTML = Math.ceil(descriptive.avgOrdersPerDay);
+                    $("#area-average-value-result")[0].innerHTML = '₹ '+descriptive.avgValuePerDay.toFixed(2);
 
                     // quantile 
 
@@ -1562,6 +1577,7 @@
                     
                     $("#area-qunantile-number-result")[0].innerHTML = descriptive.quintile;
                     $("#area-star-rank-result")[0].innerHTML = sampleTextArray.join(" ");
+                    $("#area-mean-order-cost-result")[0].innerHTML = descriptive.meanOrderCost.toFixed(2);
 
                     // create middle map 
                     plotAreaOnMap(data);
@@ -1582,8 +1598,8 @@
                     // predictive top header 
 
                     $("#area-customer-predictive-result")[0].innerHTML = descriptive.noOfUsers
-                    $("#area-average-order-predictive-result")[0].innerHTML = descriptive.avgOrdersPerDay.toFixed(2);
-                    $("#area-average-value-predictive-result")[0].innerHTML = descriptive.avgValuePerDay.toFixed(2);
+                    $("#area-average-order-predictive-result")[0].innerHTML = Math.ceil(descriptive.avgOrdersPerDay);
+                    $("#area-average-value-predictive-result")[0].innerHTML = '₹ '+descriptive.avgValuePerDay.toFixed(2);
 
                     // descriptive products
                     $("#1_products")[0].innerHTML = descriptive.top5Products[0];
