@@ -9,5 +9,10 @@
    1. Script to generate random Latitudes and Longitudes in a given radius for generating the assumed geographical data of the societies.
    2. Script to calculate the distance between two given locations (Lat, Long) so as to understand the locations of the newer pods (warehouse branches) in the city for efficient delivery of the milk basket products
 4. Predictive and Declarative Analysis
+   1. To build single unified platform to view real time insights basis on City, Area, Society and Individual users.
+      Insights will be divided into two form i.e. Descriptive Insights and Predictive Insights.
+      The platform as a whole aim to increase the sales by fine tuning the warehouse locations, re-setting the routes and recommending similar products to users.
+      We plan to build one dashboard which can enable Milk Basket to view all the insights level wise, City to specific user.
+
 5. Frontend
    1. Dashboard to explore the predictive and declarative insights
